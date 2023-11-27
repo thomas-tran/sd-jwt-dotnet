@@ -2,5 +2,6 @@
 
 public interface IIssuer
 {
-    public string Issue(Dictionary<string, object> claims, string issuerJwk);
+    public string Issue(Dictionary<string, object> userClaims, string issuerJwk, string? holderJwk = null, 
+        string? signAlgorithm = null, bool addDecoyClaims = false, Dictionary<string, object>? extraHeaders = null);
 }

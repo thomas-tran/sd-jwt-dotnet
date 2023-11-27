@@ -13,11 +13,21 @@ public static class HashAlgorithmHelper
     {
         return supportedHashAlgorithm switch
         {
-            SupportHashAlgorithm.MD5 => "md5",
-            SupportHashAlgorithm.SHA1 => "sha-1",
-            SupportHashAlgorithm.SHA256 => "sha-256",
-            SupportHashAlgorithm.SHA384 => "sha-384",
-            SupportHashAlgorithm.SHA512 => "sha-512",
+            SupportHashAlgorithm.MD5 => "md5"
+            ,
+            SupportHashAlgorithm.SHA1 => "sha-1"
+            ,
+            SupportHashAlgorithm.SHA256 => "sha-256"
+            ,
+            SupportHashAlgorithm.SHA384 => "sha-384"
+            ,
+            SupportHashAlgorithm.SHA512 => "sha-512"
+#if NET8_0
+            ,SupportHashAlgorithm.SHA3_256 => "sha3-256"
+            ,SupportHashAlgorithm.SHA3_384 => "sha3-384"
+            ,SupportHashAlgorithm.SHA3_512 => "sha3-512"
+#endif
+           ,
             _ => throw new ArgumentException("Unsupported hash algorithm.", nameof(supportedHashAlgorithm)),
         };
     }
@@ -26,11 +36,21 @@ public static class HashAlgorithmHelper
     {
         return hashAlgorithm.ToLower() switch
         {
-            "md5" => SupportHashAlgorithm.MD5,
-            "sha-1" => SupportHashAlgorithm.SHA1,
-            "sha-256" => SupportHashAlgorithm.SHA256,
-            "sha-384" => SupportHashAlgorithm.SHA384,
-            "sha-512" => SupportHashAlgorithm.SHA512,
+            "md5" => SupportHashAlgorithm.MD5
+            ,
+            "sha-1" => SupportHashAlgorithm.SHA1
+            ,
+            "sha-256" => SupportHashAlgorithm.SHA256
+            ,
+            "sha-384" => SupportHashAlgorithm.SHA384
+            ,
+            "sha-512" => SupportHashAlgorithm.SHA512
+#if NET8_0
+            ,"sha3-256" => SupportHashAlgorithm.SHA3_256
+            ,"sha3-384" => SupportHashAlgorithm.SHA3_384
+            ,"sha3-512" => SupportHashAlgorithm.SHA3_512
+#endif
+            ,
             _ => throw new ArgumentException("Unsupported hash algorithm.", nameof(hashAlgorithm)),
         };
     }
@@ -44,12 +64,17 @@ public static class HashAlgorithmHelper
     {
         return supportedHashAlgorithm switch
         {
-            SupportHashAlgorithm.MD5 => MD5.Create(),
-            SupportHashAlgorithm.SHA1 => SHA1.Create(),
-            SupportHashAlgorithm.SHA256 => SHA256.Create(),
-            SupportHashAlgorithm.SHA384 => SHA384.Create(),
-            SupportHashAlgorithm.SHA512 => SHA512.Create(),
-            _ => throw new ArgumentException("Unsupported hash algorithm.", nameof(supportedHashAlgorithm)),
+            SupportHashAlgorithm.MD5 => MD5.Create()
+            ,SupportHashAlgorithm.SHA1 => SHA1.Create()
+            ,SupportHashAlgorithm.SHA256 => SHA256.Create()
+            ,SupportHashAlgorithm.SHA384 => SHA384.Create()
+            ,SupportHashAlgorithm.SHA512 => SHA512.Create()
+#if NET8_0
+            ,SupportHashAlgorithm.SHA3_256 => SHA3_256.Create()
+            ,SupportHashAlgorithm.SHA3_384 => SHA3_384.Create()
+            ,SupportHashAlgorithm.SHA3_512 => SHA3_512.Create()
+#endif
+            ,_ => throw new ArgumentException("Unsupported hash algorithm.", nameof(supportedHashAlgorithm)),
         };
     }
 }

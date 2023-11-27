@@ -21,4 +21,9 @@ public class Issuer : IIssuer
 
         return token;
     }
+
+    public string Issue(Dictionary<string, object> userClaims, string issuerJwk, string? holderJwk = null, string? signAlgorithm = null, bool addDecoyClaims = false, Dictionary<string, object>? extraHeaders = null)
+    {
+        throw new NotImplementedException();
+    }
 }
